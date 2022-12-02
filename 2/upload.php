@@ -17,6 +17,9 @@ function handleFile($file) {
 
 $csvPostFile = $_FILES["csv"];
 if($csvPostFile["error"] == 0){
+	if (file_exists("./upload") === false) {
+		mkdir("./upload", 0700, true);
+	}
     $ext = parsePathExtention($csvPostFile["name"]);
     $tmpName = $csvPostFile["tmp_name"];
     if($ext === "csv"){
